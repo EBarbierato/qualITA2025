@@ -117,10 +117,3 @@ If you use this work in your research, please cite:
 This project is licensed under the MIT License. You are free to use, modify, and distribute it with attribution.
 
 ---
-
- For issues, suggestions, or collaboration opportunities, feel free to open a GitHub issue or contact the authors.
-
-```
-
-Let me know if you want to generate the file automatically, include figures in the README preview (using relative paths), or add badges (DOI, CI, license, etc.).
-```
