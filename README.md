@@ -97,20 +97,7 @@ Renders a visual diagram (`cspn.pdf`) of the colored stochastic Petri net.
 
 ---
 
-##  Citation
 
-If you use this work in your research, please cite:
-
-```bibtex
-@article{your2025paper,
-  title = {Quantifying Cybersecurity--QoS Trade-Offs in Smart Hospitals: A Comparative Study Using CSPNs and Markovian Agent Models},
-  author = {Your Name and Collaborators},
-  year = {2025},
-  journal = {To Appear},
-}
-```
-
----
 
 ##  License
 
