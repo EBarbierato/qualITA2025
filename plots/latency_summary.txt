@@ -1,0 +1,3 @@
+Mean latency: 48.87 steps
+Mode latency (most frequent exact value): 7 steps
+Most frequent latency bin: 4.0–7.8 steps

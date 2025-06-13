@@ -1,0 +1,96 @@
+digraph {
+	dpi=96 fontsize=18 rankdir=TB size="5.1,5.1"
+	Devices [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+               <TR><TD><FONT POINT-SIZE="16"><B>DeviceSet</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">Devices</FONT></TD></TR>
+             </TABLE>> shape=circle]
+	Attackers [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+               <TR><TD><FONT POINT-SIZE="16"><B>AttackClass</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">Attackers</FONT></TD></TR>
+             </TABLE>> shape=circle]
+	SecuritySystem [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+               <TR><TD><FONT POINT-SIZE="16"><B>MitigatorSet</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">SecuritySystem</FONT></TD></TR>
+             </TABLE>> shape=circle]
+	Operators [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+               <TR><TD><FONT POINT-SIZE="16"><B>OperatorSet</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">Operators</FONT></TD></TR>
+             </TABLE>> shape=circle]
+	Alerts [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+               <TR><TD><FONT POINT-SIZE="16"><B>AlertSet</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">Alerts</FONT></TD></TR>
+             </TABLE>> shape=circle]
+	T1 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T1</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">CompromiseDevice</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.060</FONT></TD></TR>
+             </TABLE>> shape=box]
+	T2 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T2</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">MitigateDevice</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.050</FONT></TD></TR>
+             </TABLE>> shape=box]
+	T3 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T3</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">AdaptAttack</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.075</FONT></TD></TR>
+             </TABLE>> shape=box]
+	T4 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T4</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">GainControl</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.080</FONT></TD></TR>
+             </TABLE>> shape=box]
+	T5 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T5</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">HumanRecovery</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.040</FONT></TD></TR>
+             </TABLE>> shape=box]
+	T6 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T6</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">RaiseAlert</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.070</FONT></TD></TR>
+             </TABLE>> shape=box]
+	T7 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T7</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">TriggerMitigation</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.090</FONT></TD></TR>
+             </TABLE>> shape=box]
+	T8 [label=<
+             <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="1">
+               <TR><TD><FONT POINT-SIZE="16"><B>T8</B></FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="16">OverloadOperator</FONT></TD></TR>
+               <TR><TD><FONT POINT-SIZE="14">λ = 0.050</FONT></TD></TR>
+             </TABLE>> shape=box]
+	Attackers -> T1 [label="att.target = dev.d and dev.s = NORMAL" fontsize=14]
+	Devices -> T1 [label="" fontsize=14]
+	T1 -> Devices [label="" fontsize=14]
+	Devices -> T2 [label="dev.s = COMPROMISED" fontsize=14]
+	SecuritySystem -> T2 [label="mitigator ready" fontsize=14]
+	T2 -> Devices [label="" fontsize=14]
+	Attackers -> T3 [label="strategy failed" fontsize=14]
+	T3 -> Attackers [label="" fontsize=14]
+	Attackers -> T4 [label="attacker adapted" fontsize=14]
+	T4 -> Devices [label="" fontsize=14]
+	Devices -> T5 [label="" fontsize=14]
+	Operators -> T5 [label="operator available and not overloaded" fontsize=14]
+	T5 -> Devices [label="" fontsize=14]
+	Devices -> T6 [label="#COMPROMISED(devices) > θ" fontsize=14]
+	T6 -> Alerts [label="" fontsize=14]
+	Alerts -> T7 [label="alert active" fontsize=14]
+	T7 -> SecuritySystem [label="" fontsize=14]
+	Alerts -> T8 [label="too many alerts/operator" fontsize=14]
+	Operators -> T8 [label="" fontsize=14]
+	T8 -> Operators [label="" fontsize=14]
+}
